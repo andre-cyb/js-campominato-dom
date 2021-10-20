@@ -41,6 +41,10 @@ main{
 .on_click{
     background-color: #69798a;
 }
+.on_bomb{
+    background-color: red;
+
+}
 .my_footer{
     background-color: #f8f9fa;
     

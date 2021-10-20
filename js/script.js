@@ -46,9 +46,20 @@ btnGame.addEventListener("click", function () {
     for (j = 0; j < 16; j++) {
         const randomNum = Math.floor(Math.random() * (totalCell - 1 + 1)) + 1;
 
-
+        arrayBombe.push(randomNum);
         console.log(randomNum);
+
+        const existNum = arrayBombe.includes(randomNum);
+
+        if () {
+
+
+        } else {
+
+
+        }
     }
+    console.log(arrayBombe);
 });
 
 

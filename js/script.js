@@ -3,6 +3,7 @@ const selectBox = document.getElementById("select_box");
 const btnGame = document.getElementById("start_game");
 const cellContainer = document.querySelector(".game_container");
 
+const arrayBombe = [];
 
 
 
@@ -39,10 +40,19 @@ btnGame.addEventListener("click", function () {
         cell.addEventListener("click", cellClick);
         */
 
+        cell.addEventListener("click", onSingleCellClick);
+        // cell.addEventListener("click", () => onSingleCellClick(i + 1, cell));
+        /*   cell.addEventListener("click", function () {
+            this.classList.toggle("clicked");
+        
+            console.log("clickata cella #" + (i + 1));
+          }); */
+
+
+
 
     };
 
-    const arrayBombe = [];
 
     for (j = 0; j < 16; j++) {
         const randomNum = Math.floor(Math.random() * (totalCell - 1 + 1)) + 1;
@@ -59,19 +69,7 @@ btnGame.addEventListener("click", function () {
     }
     console.log(arrayBombe);
 
-    cell.addEventListener("click", onSingleCellClick); {
-        // cell.addEventListener("click", () => onSingleCellClick(i + 1, cell));
-        /*   cell.addEventListener("click", function () {
-            this.classList.toggle("clicked");
-        
-            console.log("clickata cella #" + (i + 1));
-          }); */
 
-
-        cell.textContent = i + 1;
-
-        return cell;
-    }
 
 });
 
@@ -126,20 +124,14 @@ function generateNumBomb() {
 
 
 function onSingleCellClick() {
-    // Come faccio a capire quale delle N celle è quella attualmente cliccata?
 
-
-    // devo controllare se questa cella è una bomba o meno
-    // leggo l'array delle bombe
     const currentCell = parseInt(this.textContent);
-    //const numCellaCorrente = this.numeroCella
+    console.log("cliccata su cella #" + currentCell);
 
-    console.log("clickata cella #" + currentCell);
-
-    // se il numero cliccato è presente nella lista delle bombe,
-    // Aggiungo una classe specifica
     if (arrayBombe.includes(currentCell)) {
         this.classList.add("on_bomb");
+        alert("Ops... hai trovato una mina");
+
     } else {
         this.classList.add("on_click");
     }

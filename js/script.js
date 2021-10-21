@@ -1,13 +1,14 @@
-
+"use strict";
 const selectBox = document.getElementById("select_box");
 const btnGame = document.getElementById("start_game");
 const cellContainer = document.querySelector(".game_container");
 
 const arrayBombe = [];
-
-
+let punteggio = 0;
+let endGame = false;
 
 btnGame.addEventListener("click", function () {
+    /* event.preventDefault(); */
     cellContainer.innerHTML = "";
 
     const difficulty = selectBox.value;
@@ -41,12 +42,6 @@ btnGame.addEventListener("click", function () {
         */
 
         cell.addEventListener("click", onSingleCellClick);
-        // cell.addEventListener("click", () => onSingleCellClick(i + 1, cell));
-        /*   cell.addEventListener("click", function () {
-            this.classList.toggle("clicked");
-        
-            console.log("clickata cella #" + (i + 1));
-          }); */
 
 
 
@@ -54,7 +49,7 @@ btnGame.addEventListener("click", function () {
     };
 
 
-    for (j = 0; j < 16; j++) {
+    for (let j = 0; j < 16; j++) {
         const randomNum = Math.floor(Math.random() * (totalCell - 1 + 1)) + 1;
         const newBomb = randomNum;
         const existNum = arrayBombe.includes(newBomb);
@@ -72,14 +67,6 @@ btnGame.addEventListener("click", function () {
 
 
 });
-
-
-
-
-
-
-
-
 
 
 
@@ -112,6 +99,8 @@ function cellsNum(difficulty) {
 //funzione per il click sulla cell
 function cellClick() {
     this.classList.add("on_click");
+    punteggio++;
+    console.log(punteggio);
 }
 
 
@@ -119,8 +108,6 @@ function cellClick() {
 function generateNumBomb() {
 
 }
-
-
 
 
 function onSingleCellClick() {
@@ -131,6 +118,7 @@ function onSingleCellClick() {
     if (arrayBombe.includes(currentCell)) {
         this.classList.add("on_bomb");
         alert("Ops... hai trovato una mina");
+
 
     } else {
         this.classList.add("on_click");
